@@ -5,12 +5,12 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || null;
-const APP_ID = process.env.APP_ID || null;
+const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || "";
+const APP_ID = process.env.APP_ID || "";
 const GUILD_ID =
   process.env.NODE_ENV === "production"
-    ? process.env.PT_GUILD_ID || null
-    : process.env.TEST_GUILD_ID || null;
+    ? process.env.PT_GUILD_ID || ""
+    : process.env.TEST_GUILD_ID || "";
 
 const commands = [
   new SlashCommandBuilder()
