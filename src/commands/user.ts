@@ -4,11 +4,11 @@ import { BaseInteraction } from "../baseCommand";
 
 const user: BaseInteraction = {
   builder: new SlashCommandBuilder()
-  .setName("user")
-  .setDescription("Replies with user info!"),
+    .setName("user")
+    .setDescription("Replies with user info!"),
   execute: async (interaction: CommandInteraction) => {
-  await interaction.reply("User info.");
+    await interaction.reply("User info.");
   },
-}
+};
 
 export default user;

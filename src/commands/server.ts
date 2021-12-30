@@ -4,12 +4,11 @@ import { BaseInteraction } from "../baseCommand";
 
 const server: BaseInteraction = {
   builder: new SlashCommandBuilder()
-  .setName("server")
-  .setDescription("Replies with server info!"),
+    .setName("server")
+    .setDescription("Replies with server info!"),
   execute: async (interaction: CommandInteraction) => {
-  await interaction.reply("Server info.");
+    await interaction.reply("Server info.");
   },
-}
+};
 
 export default server;
-
