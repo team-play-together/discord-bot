@@ -1,7 +1,9 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
+import fs from 'fs';
 import dotenv from "dotenv";
+import { URL } from 'url';
 
 dotenv.config();
 
@@ -12,17 +14,19 @@ const GUILD_ID =
     ? process.env.PT_GUILD_ID || ""
     : process.env.TEST_GUILD_ID || "";
 
-const commands = [
-  new SlashCommandBuilder()
-    .setName("ping")
-    .setDescription("Replies with pong!"),
-  new SlashCommandBuilder()
-    .setName("server")
-    .setDescription("Replies with server info!"),
-  new SlashCommandBuilder()
-    .setName("user")
-    .setDescription("Replies with user info!"),
-].map((command) => command.toJSON());
+const commandFiles = fs
+  .readdirSync(new URL("./commands/", import.meta.url))
+  .filter(
+    (file) => file.endsWith("js") || file.endsWith("mjs") || file.endsWith("ts")
+  );
+
+const commands = (await Promise.all(commandFiles.map(async (file) => {
+  const module = await import(`./commands/${file}`);
+
+  return module.default.builder;
+}))).map((command) => command.toJSON());
+
+console.log(commands);
 
 const rest = new REST({ version: "9" }).setToken(DISCORD_BOT_TOKEN);
 
