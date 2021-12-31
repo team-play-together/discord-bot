@@ -30,6 +30,8 @@ console.log(commands);
 
 const rest = new REST({ version: "9" }).setToken(DISCORD_BOT_TOKEN);
 
+console.log("Started refreshing application commands.");
+
 rest
   .put(Routes.applicationGuildCommands(APP_ID, GUILD_ID), { body: commands })
   .then(() => console.log("Successfully registered application commands."))
