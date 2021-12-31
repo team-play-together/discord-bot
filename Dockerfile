@@ -9,7 +9,6 @@ RUN --mount=type=cache,target=/root/.npm npm ci
 
 COPY tsconfig*.json ./
 COPY src ./src
-COPY tests ./tests
 
 RUN npm run build
 # RUN npm run test
