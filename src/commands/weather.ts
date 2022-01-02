@@ -59,12 +59,12 @@ const weather: BaseInteraction = {
 
     const param = new URLSearchParams(query);
 
-    const resposne = await fetch(`${CURRENT_API}?${param.toString()}`, {
+    const response = await fetch(`${CURRENT_API}?${param.toString()}`, {
       method: "GET",
     });
 
-    if (resposne.status === 200) {
-      const data: WeatherResponse = <WeatherResponse>await resposne.json();
+    if (response.status === 200) {
+      const data: WeatherResponse = <WeatherResponse>await response.json();
 
       const name = data["name"];
       const weather = data["weather"][0];
