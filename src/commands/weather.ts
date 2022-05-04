@@ -1,7 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
 import { BaseInteraction } from "../baseCommand";
-import fetch from "node-fetch";
 
 interface WeatherResponse {
   coord: {

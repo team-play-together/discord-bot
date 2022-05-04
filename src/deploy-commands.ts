@@ -1,11 +1,8 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
-import fs from 'fs';
-import dotenv from "dotenv";
-import { URL } from 'url';
-
-dotenv.config();
+import "dotenv/config";
+import fs from "fs";
+import { URL } from "url";
 
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || "";
 const APP_ID = process.env.APP_ID || "";
@@ -20,11 +17,15 @@ const commandFiles = fs
     (file) => file.endsWith("js") || file.endsWith("mjs") || file.endsWith("ts")
   );
 
-const commands = (await Promise.all(commandFiles.map(async (file) => {
-  const module = await import(`./commands/${file}`);
+const commands = (
+  await Promise.all(
+    commandFiles.map(async (file) => {
+      const module = await import(`./commands/${file}`);
 
-  return module.default.builder;
-}))).map((command) => command.toJSON());
+      return module.default.builder;
+    })
+  )
+).map((command) => command.toJSON());
 
 console.log(commands);
 

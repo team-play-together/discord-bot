@@ -1,16 +1,14 @@
-import dotenv from "dotenv";
 import {
   Client,
   Collection,
-  Intents,
   CommandInteraction,
+  Intents,
   Interaction,
 } from "discord.js";
+import "dotenv/config";
 import fs from "fs";
-import { BaseInteraction } from "./baseCommand";
 import { URL } from "url";
-
-dotenv.config();
+import { BaseInteraction } from "./baseCommand";
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const commands: Collection<string, BaseInteraction> = new Collection();
