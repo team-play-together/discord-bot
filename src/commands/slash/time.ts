@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
-import { BaseInteraction } from "../baseCommand";
 import { DateTime } from "luxon";
+import { BaseInteraction } from "../baseCommand";
 
 const time: BaseInteraction = {
   builder: new SlashCommandBuilder()

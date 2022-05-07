@@ -11,8 +11,9 @@ const GUILD_ID =
     ? process.env.PT_GUILD_ID || ""
     : process.env.TEST_GUILD_ID || "";
 
+const SLASH_COMMAND_PATH = "./commands/slash/";
 const commandFiles = fs
-  .readdirSync(new URL("./commands/", import.meta.url))
+  .readdirSync(new URL(SLASH_COMMAND_PATH, import.meta.url))
   .filter(
     (file) => file.endsWith("js") || file.endsWith("mjs") || file.endsWith("ts")
   );
@@ -20,7 +21,7 @@ const commandFiles = fs
 const commands = (
   await Promise.all(
     commandFiles.map(async (file) => {
-      const module = await import(`./commands/${file}`);
+      const module = await import(`${SLASH_COMMAND_PATH}/${file}`);
 
       return module.default.builder;
     })
