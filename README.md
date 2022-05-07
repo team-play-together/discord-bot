@@ -39,3 +39,8 @@ docker run --env-file .env -it --rm bot
 # Or run with `--env`
 docker run -e DISCORD_BOT_TOKEN=<BOT_TOKEN> -it --rm bot
 ```
+
+## 참고자료
+
+- [An Idiot's Guide: Discord.js](https://github.com/AnIdiotsGuide/discordjs-bot-guide)
+- [Discord Dev API: List of Intents](https://discord.com/developers/docs/topics/gateway#list-of-intents)
